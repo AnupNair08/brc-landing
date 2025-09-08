@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 255 255 255;
+  --foreground: 12 20 33;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html, body, #__next {
+  height: 100%;
+}
+
+body {
+  color: rgb(var(--foreground));
+  background: rgb(var(--background));
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center rounded-md bg-primary-600 px-5 py-3 text-white shadow-lg shadow-primary-600/20 transition hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-400;
+}
+
+.container-responsive {
+  @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+
+/* Parallax effect */
+.parallax-image {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .parallax-image {
+    transform: translateY(var(--parallax-offset, 0));
+    transition: transform 0.1s ease-out;
+  }
+}
+
