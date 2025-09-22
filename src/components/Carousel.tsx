@@ -15,7 +15,7 @@ export default function Carousel({ slides, intervalMs = 4000 }: { slides: Slide[
     if (timerRef.current) clearInterval(timerRef.current);
     timerRef.current = setInterval(() => setIndex((i) => (i + 1) % slides.length), intervalMs);
     return () => { if (timerRef.current) clearInterval(timerRef.current); };
-  }, [slides.length, intervalMs]);
+  }, [slides, intervalMs]);
 
   return (
     <div className="relative overflow-hidden rounded-2xl">

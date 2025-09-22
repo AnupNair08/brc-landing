@@ -7,6 +7,8 @@ import ParallaxImage from '@/components/ParallaxImage';
 import { ServiceCard, FleetCard, AimVisionMissionCards, ClientCard, MajorWorkCard } from '@/components/Cards';
 import { company } from '@/lib/company';
 import Image from 'next/image';
+import fs from 'fs';
+import path from 'path';
 
 export default function Page() {
   const slides = [
@@ -24,6 +26,18 @@ export default function Page() {
     { src: '/assets/8.jpeg', alt: 'Heavy lift operation' },
     { src: '/assets/11.jpeg', alt: 'Heavy lift operation' },
   ];
+
+  const vishwakarmaDirectory = path.join(process.cwd(), 'public/assets/vishwakarma');
+  let vishwakarmaSlides: { src: string; alt: string; }[] = [];
+  try {
+    const vishwakarmaImageFiles = fs.readdirSync(vishwakarmaDirectory);
+    vishwakarmaSlides = vishwakarmaImageFiles.map(file => ({
+      src: `/assets/vishwakarma/${file}`,
+      alt: 'Vishwakarma pooja',
+    }));
+  } catch (error) {
+    // The directory doesn't exist, so we don't render the section.
+  }
 
   return (
     <>
@@ -186,6 +200,17 @@ export default function Page() {
           <h2 className="mb-8 text-2xl font-semibold">Gallery</h2>
           <Carousel slides={slides} intervalMs={4000} />
         </Section>
+
+        {vishwakarmaSlides.length > 0 && (
+          <Section id="news">
+            <h2 className="mb-8 text-2xl font-semibold">News</h2>
+            <div className="rounded-2xl border border-primary-100 bg-primary-50 p-8 shadow-sm sm:p-10 md:p-12">
+              <h3 className="text-xl font-semibold md:text-2xl">Vishwakarma Pooja</h3>
+              <p className="text-gray-800 md:text-lg">September 17, 2025</p>
+              <Carousel slides={vishwakarmaSlides} intervalMs={4000} />
+            </div>
+          </Section>
+        )}
 
         <Section id="why">
           <h2 className="mb-4 text-2xl font-semibold">Why Choose Us?</h2>
