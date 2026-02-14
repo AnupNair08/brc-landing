@@ -24,8 +24,9 @@ export default function Carousel({ slides, intervalMs = 4000 }: { slides: Slide[
           <div
             key={i}
             className={`absolute inset-0 transition-opacity duration-700 ${i === index ? 'opacity-100' : 'opacity-0'}`}
+            style={{ backgroundColor: '#fffbec' }}
           >
-            <Image src={s.src} alt={s.alt} fill priority={i === index} className="object-cover" />
+            <Image src={s.src} alt={s.alt} fill priority={i === index} className="object-contain" />
           </div>
         ))}
       </div>

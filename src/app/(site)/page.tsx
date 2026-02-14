@@ -39,6 +39,20 @@ export default function Page() {
     // The directory doesn't exist, so we don't render the section.
   }
 
+  const febDirectory = path.join(process.cwd(), 'public/assets/feb');
+  let febSlides: { src: string; alt: string; }[] = [];
+  try {
+    const febImageFiles = fs.readdirSync(febDirectory);
+    febSlides = febImageFiles
+      .filter(file => /\.(jpe?g|png|gif|webp)$/i.test(file))
+      .map(file => ({
+        src: `/assets/feb/${file}`,
+        alt: 'February 2026',
+      }));
+  } catch (error) {
+    // The directory doesn't exist.
+  }
+
   return (
     <>
       <Navbar />
@@ -195,22 +209,33 @@ export default function Page() {
           </div>
         </Section> */}
 
-        
+        <Section id="updates">
+            <h2 className="mb-8 text-2xl font-semibold">Updates</h2>
+            <div className="space-y-8">
+              <div className="rounded-2xl border border-primary-100 bg-primary-50 p-8 shadow-sm sm:p-10 md:p-12">
+                <h3 className="text-xl font-semibold md:text-2xl">February 2026</h3>
+                {febSlides.length > 0 ? (
+                  <Carousel slides={febSlides} intervalMs={6000} />
+                ) : (
+                  <div className="flex aspect-[16/9] w-full items-center justify-center rounded-2xl border-2 border-dashed border-primary-200 bg-primary-50/50 text-gray-500">
+                    <span className="text-sm md:text-base">Add images to public/assets/feb to display here</span>
+                  </div>
+                )}
+              </div>
+              {vishwakarmaSlides.length > 0 && (
+                <div className="rounded-2xl border border-primary-100 bg-primary-50 p-8 shadow-sm sm:p-10 md:p-12">
+                  <h3 className="text-xl font-semibold md:text-2xl">Vishwakarma Pooja</h3>
+                  <p className="text-gray-800 md:text-lg">September 17, 2025</p>
+                  <Carousel slides={vishwakarmaSlides} intervalMs={4000} />
+                </div>
+              )}
+            </div>
+          </Section>
+
         <Section id="gallery">
           <h2 className="mb-8 text-2xl font-semibold">Gallery</h2>
           <Carousel slides={slides} intervalMs={4000} />
         </Section>
-
-        {vishwakarmaSlides.length > 0 && (
-          <Section id="news">
-            <h2 className="mb-8 text-2xl font-semibold">News</h2>
-            <div className="rounded-2xl border border-primary-100 bg-primary-50 p-8 shadow-sm sm:p-10 md:p-12">
-              <h3 className="text-xl font-semibold md:text-2xl">Vishwakarma Pooja</h3>
-              <p className="text-gray-800 md:text-lg">September 17, 2025</p>
-              <Carousel slides={vishwakarmaSlides} intervalMs={4000} />
-            </div>
-          </Section>
-        )}
 
         <Section id="why">
           <h2 className="mb-4 text-2xl font-semibold">Why Choose Us?</h2>
