@@ -19,7 +19,7 @@ export default function Carousel({ slides, intervalMs = 4000 }: { slides: Slide[
 
   return (
     <div className="relative overflow-hidden rounded-2xl">
-      <div className="relative aspect-[16/9] w-full">
+      <div className="relative aspect-[3/4] w-full sm:aspect-[4/3] md:aspect-[16/9]">
         {slides.map((s, i) => (
           <div
             key={i}
