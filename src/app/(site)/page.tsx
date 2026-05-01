@@ -3,6 +3,7 @@ import Hero from '@/components/Hero';
 import Footer from '@/components/Footer';
 import Section from '@/components/Section';
 import Carousel from '@/components/Carousel';
+import LocationMap from '@/components/LocationMap';
 import ParallaxImage from '@/components/ParallaxImage';
 import { ServiceCard, FleetCard, AimVisionMissionCards, ClientCard, MajorWorkCard } from '@/components/Cards';
 import { company } from '@/lib/company';
@@ -287,6 +288,14 @@ export default function Page() {
               <MajorWorkCard key={work.title} title={work.title} logo={work.logo} />
             ))}
           </div>
+        </Section>
+
+        <Section id="location" className="bg-primary-50">
+          <div className="mb-6 text-center">
+            <h2 className="text-3xl font-bold tracking-tight text-primary-800 md:text-4xl">Find Us</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-primary-900/80 md:text-xl">{company.addressLine}</p>
+          </div>
+          <LocationMap title={`${company.name} location`} />
         </Section>
 
       </main>
