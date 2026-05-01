@@ -80,7 +80,7 @@ export default function Page() {
             <h2 className="text-2xl font-semibold md:text-3xl">Founders</h2>
           </div>
           <div className="flex flex-col items-center gap-4">
-            <div className="relative h-40 w-40 overflow-hidden rounded-full ring-2 ring-primary-200 shadow-sm">
+            <div className="relative w-40 aspect-[1014/1584] overflow-hidden rounded-xl ring-2 ring-primary-200 shadow-sm">
               <Image src="/assets/founder.jpeg" alt="Founder - Late Mr. Madhavan Kutty" fill className="object-cover" />
             </div>
             <p className="text-lg font-medium text-primary-900">Late Mr. P Madhavan Kutty</p>
