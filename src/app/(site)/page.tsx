@@ -90,9 +90,14 @@ export default function Page() {
         <Section id="director">
           <div className="text-center">
             <h2 className="text-2xl font-semibold md:text-3xl">Director</h2>
-            <div className="mx-auto mt-4 max-w-xl rounded-xl border border-primary-200 bg-white p-8 shadow-md">
-              <h3 className="text-2xl font-bold text-primary-900">M Rajesh Kutty</h3>
-              <p className="mt-2 text-lg text-gray-600">Leading the company with vision and dedication.</p>
+            <div className="mx-auto mt-4 flex max-w-xl flex-col items-center gap-4 rounded-xl border border-primary-200 bg-white p-8 shadow-md">
+              <div className="relative w-40 aspect-square overflow-hidden rounded-xl ring-2 ring-primary-200 shadow-sm">
+                <Image src="/assets/1759075860386.jpeg" alt="Director - M Rajesh Kutty" fill className="object-cover" />
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold text-primary-900">M Rajesh Kutty</h3>
+                <p className="mt-2 text-lg text-gray-600">Leading the company with vision and dedication.</p>
+              </div>
             </div>
           </div>
         </Section>
