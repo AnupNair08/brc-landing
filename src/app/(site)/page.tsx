@@ -54,6 +54,21 @@ export default function Page() {
     // The directory doesn't exist.
   }
 
+  const dussehraDirectory = path.join(process.cwd(), 'public/assets/dussehra');
+  let dussehraSlides: { src: string; alt: string; }[] = [];
+  try {
+    const dussehraImageFiles = fs.readdirSync(dussehraDirectory);
+    dussehraSlides = dussehraImageFiles
+      .filter(file => /\.(jpe?g|png|gif|webp)$/i.test(file))
+      .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
+      .map(file => ({
+        src: `/assets/dussehra/${file}`,
+        alt: 'Dussehra 2026',
+      }));
+  } catch (error) {
+    // The directory doesn't exist.
+  }
+
   return (
     <>
       <Navbar />
@@ -218,6 +233,12 @@ export default function Page() {
         <Section id="updates">
             <h2 className="mb-8 text-2xl font-semibold">Updates</h2>
             <div className="space-y-8">
+              {dussehraSlides.length > 0 && (
+                <div className="rounded-2xl border border-primary-100 bg-primary-50 p-8 shadow-sm sm:p-10 md:p-12">
+                  <h3 className="text-xl font-semibold md:text-2xl">Dussehra 2026</h3>
+                  <Carousel slides={dussehraSlides} intervalMs={6000} />
+                </div>
+              )}
               <div className="rounded-2xl border border-primary-100 bg-primary-50 p-8 shadow-sm sm:p-10 md:p-12">
                 <h3 className="text-xl font-semibold md:text-2xl">February 2026</h3>
                 {febSlides.length > 0 ? (
